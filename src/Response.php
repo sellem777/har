@@ -11,6 +11,7 @@ use Deviantintegral\Har\SharedFields\HeadersTrait;
 use Deviantintegral\Har\SharedFields\HttpVersionTrait;
 use JMS\Serializer\Annotation as Serializer;
 use Psr\Http\Message\ResponseInterface;
+use Psr\Http\Message\UriInterface;
 
 final class Response implements MessageInterface
 {
@@ -27,7 +28,7 @@ final class Response implements MessageInterface
      *
      * @Serializer\Type("integer")
      */
-    private $status;
+    private int $status;
 
     /**
      * statusText [string] - Response status description.
@@ -36,7 +37,7 @@ final class Response implements MessageInterface
      *
      * @Serializer\Type("string")
      */
-    private $statusText;
+    private string $statusText;
 
     /**
      * content [object] - Details about the response body.
@@ -45,7 +46,7 @@ final class Response implements MessageInterface
      *
      * @Serializer\Type("Deviantintegral\Har\Content")
      */
-    private $content;
+    private Content $content;
 
     /**
      * redirectURL [string] - Redirection target URL from the Location response
@@ -55,11 +56,11 @@ final class Response implements MessageInterface
      *
      * @Serializer\Type("Psr\Http\Message\UriInterface")
      */
-    private $redirectURL;
+    private UriInterface $redirectURL;
 
     public static function fromPsr7Response(ResponseInterface $source): self
     {
-        $response = (new Adapter\Psr7\Response(new static()))
+        $response = (new Adapter\Psr7\Response(new Response()))
           ->withProtocolVersion($source->getProtocolVersion())
           ->withBody($source->getBody())
           ->withStatus($source->getStatusCode(), $source->getReasonPhrase());
@@ -105,6 +106,7 @@ final class Response implements MessageInterface
 
     /**
      * @param \Deviantintegral\Har\Content $content
+     * @return self
      */
     public function setContent(Content $content): self
     {

@@ -18,21 +18,21 @@ final class Page
      *
      * @Serializer\Type("string")
      */
-    private $id;
+    private string $id;
 
     /**
      * @var string
      *
      * @Serializer\Type("string")
      */
-    private $title;
+    private string $title;
 
     /**
      * @var \Deviantintegral\Har\PageTimings
      *
      * @Serializer\Type("Deviantintegral\Har\PageTimings")
      */
-    private $pageTimings;
+    private PageTimings $pageTimings;
 
     public function getId(): string
     {
@@ -68,6 +68,7 @@ final class Page
 
     /**
      * @param \Deviantintegral\Har\PageTimings $pageTimings
+     * @return self
      */
     public function setPageTimings(PageTimings $pageTimings): self
     {

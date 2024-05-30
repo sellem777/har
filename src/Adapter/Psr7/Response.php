@@ -8,14 +8,14 @@ use Deviantintegral\Har\Content;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\StreamInterface;
 
-use function GuzzleHttp\Psr7\stream_for;
+use GuzzleHttp\Psr7\Utils;
 
 final class Response extends MessageBase implements ResponseInterface
 {
     /**
      * @var \Deviantintegral\Har\Response
      */
-    private $response;
+    private \Deviantintegral\Har\Response $response;
 
     /**
      * Response constructor.
@@ -37,7 +37,7 @@ final class Response extends MessageBase implements ResponseInterface
         $response->setStatus($code)
             ->setStatusText($reasonPhrase);
 
-        return new static($response);
+        return new Response($response);
     }
 
     public function getReasonPhrase(): string
@@ -47,20 +47,20 @@ final class Response extends MessageBase implements ResponseInterface
 
     public function getBody(): StreamInterface
     {
-        return stream_for($this->response->getContent()->getText());
+        return Utils::streamFor($this->response->getContent()->getText());
     }
 
     public function withBody(StreamInterface $body): \Psr\Http\Message\MessageInterface
     {
         $response = clone $this->response;
 
-        // We don't have any information about $body so we create a new
+        // We don't have any information about $body, so we create a new
         // content object with default values.
         $content = (new Content())
           ->setText($body->getContents());
         $response->setContent($content);
 
-        return new static($response);
+        return new Response($response);
     }
 
     public function getHarResponse(): \Deviantintegral\Har\Response

@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Deviantintegral\Har\SharedFields;
 
+use JMS\Serializer\Annotation as Serializer;
+
 trait StartedDateTimeTrait
 {
     /**
@@ -13,7 +15,7 @@ trait StartedDateTimeTrait
      *
      * @Serializer\Type("DateTime")
      */
-    private $startedDateTime;
+    private \DateTime $startedDateTime;
 
     public function setStartedDateTime(\DateTime $startedDateTime): self
     {

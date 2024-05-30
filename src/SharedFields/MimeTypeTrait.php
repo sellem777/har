@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Deviantintegral\Har\SharedFields;
 
+use JMS\Serializer\Annotation as Serializer;
+
 trait MimeTypeTrait
 {
     /**
@@ -15,7 +17,7 @@ trait MimeTypeTrait
      *
      * @Serializer\Type("string")
      */
-    protected $mimeType;
+    protected string $mimeType;
 
     public function getMimeType(): string
     {

@@ -23,7 +23,7 @@ final class CacheState
      *
      * @Serializer\Type("string")
      */
-    private $lastAccess;
+    private string $lastAccess;
 
     /**
      * eTag [string] - Etag.
@@ -32,7 +32,7 @@ final class CacheState
      *
      * @Serializer\Type("string")
      */
-    private $eTag;
+    private string $eTag;
 
     /**
      * hitCount [number] - The number of times the cache entry has been opened.
@@ -41,7 +41,7 @@ final class CacheState
      *
      * @Serializer\Type("integer")
      */
-    private $hitCount = 0;
+    private int $hitCount = 0;
 
     public function getLastAccess(): string
     {

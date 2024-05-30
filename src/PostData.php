@@ -9,8 +9,6 @@ use Deviantintegral\Har\SharedFields\MimeTypeTrait;
 use Deviantintegral\Har\SharedFields\TextTrait;
 use JMS\Serializer\Annotation as Serializer;
 
-use function GuzzleHttp\Psr7\build_query;
-
 /**
  * @see http://www.softwareishard.com/blog/har-12-spec/#postData
  */
@@ -29,7 +27,7 @@ final class PostData
      *
      * @Serializer\Type("array<Deviantintegral\Har\Params>")
      */
-    private $params;
+    private array $params;
 
     /**
      * @return \Deviantintegral\Har\Params[]
@@ -46,6 +44,7 @@ final class PostData
 
     /**
      * @param \Deviantintegral\Har\Params[] $params
+     * @return self
      */
     public function setParams(array $params): self
     {
@@ -77,7 +76,7 @@ final class PostData
             foreach ($this->params as $param) {
                 $query[$param->getName()] = $param->getValue();
             }
-            $string = build_query($query);
+            $string = http_build_query($query);
 
             return \strlen($string);
         }

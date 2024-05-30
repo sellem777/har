@@ -23,7 +23,7 @@ class Creator
      *
      * @Serializer\Type("string")
      */
-    private $version;
+    private string $version;
 
     public function getVersion(): string
     {

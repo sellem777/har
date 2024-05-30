@@ -13,7 +13,7 @@ use JMS\Serializer\SerializerBuilder;
 
 final class Serializer
 {
-    public function getSerializer()
+    public function getSerializer(): \JMS\Serializer\Serializer
     {
         $builder = $this->getSerializerBuilder();
 
@@ -22,7 +22,7 @@ final class Serializer
 
     public function getSerializerBuilder(): SerializerBuilder
     {
-        $builder = SerializerBuilder::create()
+        return SerializerBuilder::create()
           ->setPropertyNamingStrategy(new IdenticalPropertyNamingStrategy())
           ->configureHandlers(
               function (HandlerRegistryInterface $registry) {
@@ -35,8 +35,6 @@ final class Serializer
                   $registry->registerSubscribingHandler(new UriHandler());
               }
           );
-
-        return $builder;
     }
 
     public function deserializeHar(string $data): Har

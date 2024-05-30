@@ -3,6 +3,7 @@
 namespace Deviantintegral\Har;
 
 use JMS\Serializer\Annotation as Serializer;
+use Psr\Http\Message\UriInterface;
 
 /**
  * @see https://developers.google.com/web/tools/chrome-devtools/network/reference#requests
@@ -24,25 +25,25 @@ final class Initiator
      *   Some other process or action, such as navigating to a page via a link
      *   or entering a URL in the address bar.
      */
-    private $type;
+    private string $type;
 
     /**
      * URL of the entry that initiated this request.
      *
-     * @var \Psr\Http\Message\UriInterface
+     * @var \Psr\Http\Message\UriInterface|null
      *
      * @Serializer\Type("Psr\Http\Message\UriInterface")
      */
-    private $url;
+    private ?UriInterface $url = null;
 
     /**
      * Line number that initiated this request.
      *
-     * @var int
+     * @var int|null
      *
      * @Serializer\Type("integer")
      */
-    private $lineNumber;
+    private ?int $lineNumber = null;
 
     public function getType(): ?string
     {

@@ -17,7 +17,7 @@ trait NameValueTrait
      *
      * @Serializer\Type("string")
      */
-    protected $value;
+    protected string $value;
 
     public function setValue(string $value): self
     {
@@ -27,7 +27,7 @@ trait NameValueTrait
     }
 
     /**
-     * @return string
+     * @return string|null
      */
     public function getValue(): ?string
     {

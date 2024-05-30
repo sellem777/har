@@ -27,7 +27,7 @@ class PostDataTest extends HarTestBase
         $serializer = $this->getSerializer();
         $serialized = $serializer->serialize($postData, 'json');
         // We don't care about the interior of how 'params' are serialized, so
-        // we just encode and decode them for the assert.
+        // we just encode and decode them for the assertion.
         $this->assertEquals(
             [
                 'params' => json_decode(

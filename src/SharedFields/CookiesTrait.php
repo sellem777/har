@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Deviantintegral\Har\SharedFields;
 
+use JMS\Serializer\Annotation as Serializer;
+
 trait CookiesTrait
 {
     /**
@@ -13,7 +15,7 @@ trait CookiesTrait
      *
      * @Serializer\Type("array<Deviantintegral\Har\Cookie>")
      */
-    private $cookies;
+    private array $cookies;
 
     /**
      * @return \Deviantintegral\Har\Cookie[]
