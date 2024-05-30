@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Deviantintegral\Har\SharedFields;
 
+use JMS\Serializer\Annotation as Serializer;
+
 trait HttpVersionTrait
 {
     /**
@@ -13,7 +15,7 @@ trait HttpVersionTrait
      *
      * @Serializer\Type("string")
      */
-    private $httpVersion;
+    private string $httpVersion;
 
     public function setHttpVersion(string $httpVersion): self
     {

@@ -18,21 +18,21 @@ final class Cache
      * beforeRequest [object, optional] - State of a cache entry before the
      * request. Leave out this field if the information is not available.
      *
-     * @var \Deviantintegral\Har\CacheState
+     * @var \Deviantintegral\Har\CacheState|null
      *
      * @Serializer\Type("Deviantintegral\Har\CacheState")
      */
-    private $beforeRequest;
+    private ?CacheState $beforeRequest = null;
 
     /**
      * afterRequest [object, optional] - State of a cache entry after the
      * request. Leave out this field if the information is not available.
      *
-     * @var \Deviantintegral\Har\CacheState
+     * @var \Deviantintegral\Har\CacheState|null
      *
      * @Serializer\Type("Deviantintegral\Har\CacheState")
      */
-    private $afterRequest;
+    private ?CacheState $afterRequest = null;
 
     public function hasBeforeRequest(): bool
     {
@@ -40,7 +40,7 @@ final class Cache
     }
 
     /**
-     * @return \Deviantintegral\Har\CacheState
+     * @return \Deviantintegral\Har\CacheState|null
      */
     public function getBeforeRequest(): ?CacheState
     {
@@ -49,6 +49,7 @@ final class Cache
 
     /**
      * @param \Deviantintegral\Har\CacheState $beforeRequest
+     * @return self
      */
     public function setBeforeRequest(
         CacheState $beforeRequest
@@ -64,7 +65,7 @@ final class Cache
     }
 
     /**
-     * @return \Deviantintegral\Har\CacheState
+     * @return \Deviantintegral\Har\CacheState|null
      */
     public function getAfterRequest(): ?CacheState
     {
@@ -73,6 +74,7 @@ final class Cache
 
     /**
      * @param \Deviantintegral\Har\CacheState $afterRequest
+     * @return self
      */
     public function setAfterRequest(
         CacheState $afterRequest

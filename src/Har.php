@@ -13,7 +13,7 @@ final class Har
      *
      * @Serializer\Type("Deviantintegral\Har\Log")
      */
-    private $log;
+    private Log $log;
 
     /**
      * @return \Deviantintegral\Har\Log
@@ -25,6 +25,7 @@ final class Har
 
     /**
      * @param \Deviantintegral\Har\Log $log
+     * @return self
      */
     public function setLog(Log $log): self
     {
@@ -36,7 +37,7 @@ final class Har
     /**
      * Return a generator that returns cloned HARs with one per HAR entry.
      *
-     * @return \Deviantintegral\Har\Har[]
+     * @return \Generator<\Deviantintegral\Har\Har>
      */
     public function splitLogEntries(): \Generator
     {

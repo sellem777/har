@@ -20,7 +20,7 @@ final class PageTimings
      *
      * @Serializer\Type("float")
      */
-    private $onContentLoad;
+    private float $onContentLoad;
 
     /**
      * Page is loaded (onLoad event fired). Number of milliseconds since page
@@ -31,7 +31,7 @@ final class PageTimings
      *
      * @Serializer\Type("float")
      */
-    private $onLoad;
+    private float $onLoad;
 
     public function getOnContentLoad(): float
     {

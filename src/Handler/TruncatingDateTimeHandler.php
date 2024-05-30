@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Deviantintegral\Har\Handler;
 
+use DateTimeInterface;
 use JMS\Serializer\GraphNavigatorInterface;
 use JMS\Serializer\Handler\DateHandler;
 use JMS\Serializer\Handler\SubscribingHandlerInterface;
@@ -17,9 +18,9 @@ class TruncatingDateTimeHandler implements SubscribingHandlerInterface
     /**
      * @var \JMS\Serializer\Handler\DateHandler
      */
-    private $innerHandler;
+    private DateHandler $innerHandler;
 
-    public static function getSubscribingMethods()
+    public static function getSubscribingMethods(): array
     {
         $methods = [];
         $types = ['DateTime', 'DateTimeImmutable', 'DateInterval'];
@@ -50,7 +51,7 @@ class TruncatingDateTimeHandler implements SubscribingHandlerInterface
         return $methods;
     }
 
-    public function __construct(string $defaultFormat = \DateTime::ATOM, string $defaultTimezone = 'UTC')
+    public function __construct(string $defaultFormat = DateTimeInterface::ATOM, string $defaultTimezone = 'UTC')
     {
         $this->innerHandler = new DateHandler($defaultFormat, $defaultTimezone);
     }
@@ -92,8 +93,6 @@ class TruncatingDateTimeHandler implements SubscribingHandlerInterface
             $microseconds = strstr($microseconds, 'UTC', true);
         }
         $truncated = substr($microseconds, 0, 7);
-        $data = str_replace($microseconds, $truncated, $data);
-
-        return $data;
+        return str_replace($microseconds, $truncated, $data);
     }
 }

@@ -15,7 +15,7 @@ class HarFileRepository implements RepositoryInterface
     /**
      * @var string
      */
-    private $repositoryPath;
+    private string $repositoryPath;
 
     /**
      * HarFileRepository constructor.
@@ -61,7 +61,6 @@ class HarFileRepository implements RepositoryInterface
             // Remove any file not ending in .har.
             if (false === strpos($har_file, '.har', \strlen($har_file) - \strlen('.har'))) {
                 unset($hars[$index]);
-                continue;
             }
         }
 

@@ -17,7 +17,7 @@ use Symfony\Component\Console\Style\SymfonyStyle;
  */
 class SplitCommand extends Command
 {
-    protected function configure()
+    protected function configure(): void
     {
         parent::configure();
         $this->setName('har:split')
@@ -60,6 +60,8 @@ class SplitCommand extends Command
             $io->progressAdvance();
         }
         $io->progressFinish();
+
+        return Command::SUCCESS;
     }
 
     private function getSplitDestination(
@@ -75,8 +77,6 @@ class SplitCommand extends Command
                   ->getUrl()
             ).'.har';
         }
-        $destination = $destination_path."/$filename";
-
-        return $destination;
+        return $destination_path."/$filename";
     }
 }

@@ -4,10 +4,12 @@ declare(strict_types=1);
 
 namespace Deviantintegral\Har\Handler;
 
+use DateTimeInterface;
 use Deviantintegral\NullDateTime\ConcreteDateTime;
 use Deviantintegral\NullDateTime\DateTimeFormatInterface;
 use Deviantintegral\NullDateTime\NullDateTime;
 use JMS\Serializer\GraphNavigatorInterface;
+use JMS\Serializer\Handler\DateHandler;
 use JMS\Serializer\Handler\SubscribingHandlerInterface;
 use JMS\Serializer\JsonDeserializationVisitor;
 use JMS\Serializer\SerializationContext;
@@ -18,9 +20,9 @@ class DateFormatInterfaceHandler implements SubscribingHandlerInterface
     /**
      * @var \JMS\Serializer\Handler\DateHandler
      */
-    private $innerHandler;
+    private DateHandler $innerHandler;
 
-    public static function getSubscribingMethods()
+    public static function getSubscribingMethods(): array
     {
         $types = [
           'Deviantintegral\NullDateTime\DateTimeFormatInterface',
@@ -46,7 +48,7 @@ class DateFormatInterfaceHandler implements SubscribingHandlerInterface
         return $methods;
     }
 
-    public function __construct(string $defaultFormat = \DateTime::ATOM, string $defaultTimezone = 'UTC')
+    public function __construct(string $defaultFormat = DateTimeInterface::ATOM, string $defaultTimezone = 'UTC')
     {
         $this->innerHandler = new \JMS\Serializer\Handler\DateHandler($defaultFormat, $defaultTimezone);
     }

@@ -26,7 +26,7 @@ final class Entry
      *
      * @Serializer\Type("string")
      */
-    private $pageref;
+    private string $pageref;
 
     /**
      * Total elapsed time of the request in milliseconds. This is the sum of all
@@ -36,7 +36,7 @@ final class Entry
      *
      * @Serializer\Type("float")
      */
-    private $time;
+    private float $time;
 
     /**
      * Detailed info about the request.
@@ -45,7 +45,7 @@ final class Entry
      *
      * @Serializer\Type("Deviantintegral\Har\Request")
      */
-    private $request;
+    private Request $request;
 
     /**
      * Detailed info about the response.
@@ -54,7 +54,7 @@ final class Entry
      *
      * @Serializer\Type("Deviantintegral\Har\Response")
      */
-    private $response;
+    private Response $response;
 
     /**
      * Info about cache usage.
@@ -63,37 +63,37 @@ final class Entry
      *
      * @Serializer\Type("Deviantintegral\Har\Cache")
      */
-    private $cache;
+    private Cache $cache;
 
     /**
      * @var \Deviantintegral\Har\Timings
      *
      * @Serializer\Type("Deviantintegral\Har\Timings")
      */
-    private $timings;
+    private Timings $timings;
 
     /**
      * @var string
      *
      * @Serializer\Type("string")
      */
-    private $serverIPAddress;
+    private string $serverIPAddress;
 
     /**
      * @var string
      *
      * @Serializer\Type("string")
      */
-    private $connection;
+    private string $connection;
 
     /**
      * Detailed info about the request.
      *
-     * @var \Deviantintegral\Har\Initiator
+     * @var \Deviantintegral\Har\Initiator|null
      *
      * @Serializer\Type("Deviantintegral\Har\Initiator")
      */
-    private $_initiator;
+    private ?Initiator $_initiator = null;
 
     public function getPageref(): string
     {
@@ -129,6 +129,7 @@ final class Entry
 
     /**
      * @param \Deviantintegral\Har\Request $request
+     * @return self
      */
     public function setRequest(Request $request): self
     {
@@ -147,6 +148,7 @@ final class Entry
 
     /**
      * @param \Deviantintegral\Har\Response $response
+     * @return self
      */
     public function setResponse(Response $response): self
     {
@@ -165,6 +167,7 @@ final class Entry
 
     /**
      * @param \Deviantintegral\Har\Cache $cache
+     * @return self
      */
     public function setCache(Cache $cache): self
     {
@@ -183,6 +186,7 @@ final class Entry
 
     /**
      * @param \Deviantintegral\Har\Timings $timings
+     * @return self
      */
     public function setTimings(Timings $timings): self
     {

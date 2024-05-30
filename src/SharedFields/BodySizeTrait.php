@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Deviantintegral\Har\SharedFields;
 
+use JMS\Serializer\Annotation as Serializer;
+
 trait BodySizeTrait
 {
     /**
@@ -15,7 +17,7 @@ trait BodySizeTrait
      *
      * @Serializer\Type("integer")
      */
-    protected $bodySize = -1;
+    protected int $bodySize = -1;
 
     public function setBodySize(int $bodySize): self
     {

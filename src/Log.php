@@ -26,35 +26,35 @@ class Log
      *
      * @Serializer\Type("string")
      */
-    private $version;
+    private string $version;
 
     /**
      * @var \Deviantintegral\Har\Creator
      *
      * @Serializer\Type("Deviantintegral\Har\Creator")
      */
-    private $creator;
+    private Creator $creator;
 
     /**
      * @var \Deviantintegral\Har\Browser
      *
      * @Serializer\Type("Deviantintegral\Har\Browser")
      */
-    private $browser;
+    private Browser $browser;
 
     /**
      * @var \Deviantintegral\Har\Page[]
      *
      * @Serializer\Type("array<Deviantintegral\Har\Page>")
      */
-    private $pages;
+    private array $pages;
 
     /**
      * @var \Deviantintegral\Har\Entry[]
      *
      * @Serializer\Type("array<integer, Deviantintegral\Har\Entry>")
      */
-    private $entries;
+    private array $entries;
 
     public function getVersion(): string
     {
@@ -78,6 +78,7 @@ class Log
 
     /**
      * @param \Deviantintegral\Har\Creator $creator
+     * @return self
      */
     public function setCreator(Creator $creator): self
     {
@@ -96,6 +97,7 @@ class Log
 
     /**
      * @param \Deviantintegral\Har\Browser $browser
+     * @return self
      */
     public function setBrowser(Browser $browser): self
     {
@@ -114,6 +116,7 @@ class Log
 
     /**
      * @param \Deviantintegral\Har\Page[] $pages
+     * @return self
      */
     public function setPages(array $pages): self
     {
@@ -132,6 +135,7 @@ class Log
 
     /**
      * @param \Deviantintegral\Har\Entry[] $entries
+     * @return self
      */
     public function setEntries(array $entries): self
     {

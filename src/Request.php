@@ -11,6 +11,7 @@ use Deviantintegral\Har\SharedFields\HeadersTrait;
 use Deviantintegral\Har\SharedFields\HttpVersionTrait;
 use JMS\Serializer\Annotation as Serializer;
 use Psr\Http\Message\RequestInterface;
+use Psr\Http\Message\UriInterface;
 
 /**
  * @see http://www.softwareishard.com/blog/har-12-spec/#request
@@ -30,14 +31,14 @@ final class Request implements MessageInterface
      *
      * @Serializer\Type("string")
      */
-    private $method;
+    private string $method;
 
     /**
      * @var \Psr\Http\Message\UriInterface
      *
      * @Serializer\Type("Psr\Http\Message\UriInterface")
      */
-    private $url;
+    private UriInterface $url;
 
     /**
      * List of query parameter objects.
@@ -46,25 +47,26 @@ final class Request implements MessageInterface
      *
      * @Serializer\Type("array<Deviantintegral\Har\Params>")
      */
-    private $queryString;
+    private array $queryString;
 
     /**
      * postData [object, optional] - Posted data info.
      *
-     * @var \Deviantintegral\Har\PostData
+     * @var \Deviantintegral\Har\PostData|null
      *
      * @Serializer\Type("Deviantintegral\Har\PostData")
      */
-    private $postData;
+    private ?PostData $postData = null;
 
     /**
      * Construct a new Request from a PSR-7 Request.
      *
+     * @param RequestInterface $source
      * @return \Deviantintegral\Har\Request
      */
     public static function fromPsr7Request(RequestInterface $source): self
     {
-        $request = (new Adapter\Psr7\Request(new static()))
+        $request = (new Adapter\Psr7\Request(new Request()))
           ->withBody($source->getBody())
           ->withMethod($source->getMethod())
           ->withProtocolVersion($source->getProtocolVersion())
@@ -139,6 +141,7 @@ final class Request implements MessageInterface
 
     /**
      * @param \Deviantintegral\Har\PostData $postData
+     * @return self
      */
     public function setPostData(PostData $postData
     ): self {

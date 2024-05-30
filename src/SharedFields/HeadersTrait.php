@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Deviantintegral\Har\SharedFields;
 
+use JMS\Serializer\Annotation as Serializer;
+
 trait HeadersTrait
 {
     /**
@@ -13,7 +15,7 @@ trait HeadersTrait
      *
      * @Serializer\Type("array<Deviantintegral\Har\Header>")
      */
-    protected $headers = [];
+    protected array $headers = [];
 
     /**
      * headersSize [number]* - Total number of bytes from the start of the HTTP
@@ -24,7 +26,7 @@ trait HeadersTrait
      *
      * @Serializer\Type("integer")
      */
-    protected $headersSize = -1;
+    protected int $headersSize = -1;
 
     public function getHeadersSize(): int
     {

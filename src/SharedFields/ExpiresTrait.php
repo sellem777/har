@@ -17,7 +17,7 @@ trait ExpiresTrait
      *
      * @Serializer\Type("Deviantintegral\NullDateTime\DateTimeFormatInterface")
      */
-    private $expires;
+    private DateTimeFormatInterface $expires;
 
     public function getExpires(): DateTimeFormatInterface
     {
