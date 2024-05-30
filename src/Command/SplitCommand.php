@@ -29,7 +29,7 @@ class SplitCommand extends Command
           ->addOption('force', 'f', InputOption::VALUE_NONE, 'Overwrite destination files that already exist.');
     }
 
-    protected function execute(InputInterface $input, OutputInterface $output)
+    protected function execute(InputInterface $input, OutputInterface $output): int
     {
         $io = new SymfonyStyle($input, $output);
         $source = $input->getArgument('har');
